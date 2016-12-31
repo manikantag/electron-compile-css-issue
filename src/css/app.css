@@ -1,0 +1,237 @@
+html, body {
+	height: 100%;
+}
+
+html {
+    /*border: 2px solid #eee;*/
+    box-sizing: border-box;
+
+    /*border-width: 3px;
+    border-style: solid;
+    border-image: linear-gradient(to bottom, #2196f3 0%, #3acfd5 100%) 1 100%;
+    border-image-slice: 1;*/
+
+    /*border-image: linear-gradient(to bottom, #1accbc 0%,#1bcba2 100%) 1 100%;*/
+    /*border-image: linear-gradient(to bottom, #3a4ed5 0%, #3acfd5 100%);*/
+
+    /* Sticky footer styles https://getbootstrap.com/examples/sticky-footer */
+    position: relative;
+    min-height: 100%;
+}
+
+/* Use UI System fonts and colors,
+   see: https://www.sitepoint.com/css-system-styles/ */
+body {
+    /*font: caption;*/
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: WindowText;
+    background-color: #FAFAFA;
+}
+
+
+/* Common styles */
+.padding-0 { padding: 0 !important; }
+.margin-top-5 {margin-top: 5px !important;}
+
+.align-center {
+	display:flex;
+	align-items: center;
+	justify-content:center;
+	height:100%;
+	width: 100%;
+}
+
+.overflow-visible {overflow: visible !important;}
+
+.shadow-100 { box-shadow: 0 0 100px #efefef; }
+.shadow-top-10 { box-shadow: inset 0px 10px 12px -10px #ddd; }
+.shadow-right-10 { box-shadow: inset -10px 0px 12px -10px #ddd; }
+
+/* Animations */
+.anim-blink {
+  animation: anim-blink .5s linear infinite;
+}
+
+@keyframes anim-blink {
+  50% { opacity: .2; }
+}
+
+/* Horizontal line with text http://stackoverflow.com/a/29105358/340290 */
+.hr-line {
+  display: flex;
+}
+.hr-line:before,
+.hr-line:after {
+  /* color:white; */
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid;
+  margin: auto 0.25em;
+  /*box-shadow: 0 -1px;*/
+}
+.hr-line-dashed:before,
+.hr-line-dashed:after {
+    border-bottom: 1px dashed;
+}
+.hr-line-dotted:before,
+.hr-line-dotted:after {
+    border-bottom: 1px dotted;
+}
+.hr-line-inset:before,
+.hr-line-inset:after {
+    border-bottom: 2px inset;
+}
+
+
+/* Make text not selectable https://github.com/electron/electron/issues/2538 */
+:not(input):not(textarea),
+:not(input):not(textarea)::after,
+:not(input):not(textarea)::before {
+    -webkit-user-select: none;
+    user-select: none;
+    /*cursor: default;*/
+}
+input, button, textarea, :focus {
+    outline: none; /* You should add some other style for :focus to help UX/a11y */
+}
+
+a:not([draggable=true]), img:not([draggable=true]) {
+    -webkit-user-drag: none;
+    user-drag: none; /* Technically not supported in Electron yet */
+}
+a[href^="http://"],
+a[href^="https://"],
+a[href^="ftp://"] {
+    -webkit-user-drag: auto;
+    user-drag: auto; /* Technically not supported in Electron yet */
+}
+
+
+/* Bootstrap overrides, additions */
+.row + .row {
+    margin-top: 20px;
+}
+
+.btn-group .btn-success.dropdown-toggle {
+    background-color: #439a46;
+}
+.btn-group label {margin-bottom: 0;}
+
+.label-caps label {
+	text-transform: uppercase;
+    font-size: .8em;
+	margin-bottom: 0;
+	color: #ababab !important;
+}
+.label-caps .form-control-static { padding-top: 0; }
+
+.modal-backdrop-lightgray { background: #F5F5F5 !important; }
+
+.modal-backdrop-lightgray .modal-content { box-shadow: 0px 0px 10px #E8E8E8; }
+
+.input-group .input-group-addon {
+	padding: 2px 2px 0 0px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+
+/* Page styles */
+.main .page-header { margin-top: 15px; }
+
+.status-circle {
+	display: inline-block;
+	width: 11px;
+	height: 11px;
+	border-radius: 50%;
+}
+.status-connected { background-color: #32cd32; }
+.status-connecting { background-color: #2196f3; }
+.status-disconnected { background-color: #e51c23;}
+
+.brand-logo {
+	width: 70px;
+	margin: -2px auto 0 auto;
+}
+.brand-title { text-align: center; }
+.brand-title h6 {display: inline-block;}
+
+#sidebar {
+	position: fixed;
+    top: 0;
+	bottom: 0;
+	left: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: #EDEDED;
+    width: 180px;
+}
+#sidebar .nav>li>a {
+    padding: 5px 10px;
+}
+
+#sidebar a label, #sidebar button label {
+    cursor: pointer;
+}
+
+#sidebar.collapsed {
+    width: 65px;
+}
+#sidebar.collapsed .brand-logo {
+	width: 45px;
+	margin: -2px auto 0 auto;
+}
+#sidebar.collapsed .brand-title h6 {
+    display: none;
+}
+#sidebar.collapsed label {
+    display: none;
+}
+#sidebar.collapsed .navbar-wrapper {
+    padding: 0;
+    text-align: center;
+}
+#sidebar.collapsed .navbar-wrapper a {
+    border-radius: 0;
+}
+#sidebar.collapsed .online-sync-btn-group {
+    width: 54px;
+}
+#sidebar.collapsed .online-sync-btn-group button {
+    padding: 5px 10px;
+}
+#sidebar.collapsed .online-sync-btn-group button+button {
+    padding: 5px 5px;
+}
+
+#content {
+    margin-left: 200px;
+    padding-right: 20px;
+}
+
+#sidebar.collapsed ~ #content {
+    margin-left: 90px;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0px;
+	margin: 0 0 0 -15px !important;
+	width: 100%;
+}
+
+.build-version {
+	font-size: .7em;
+	color: gray;
+	margin-bottom: 0;
+}
+
+/* BoxOffice styles */
+.bo-bookings-list h6 { margin: 0; }
+.bo-bookings-list .btn { width: 68px; padding: 5px; margin: 2px; font-weight: bold; }
+.bo-bookings-list .popover { min-width: 330px; padding: 0; text-align: center; }
+.bo-bookings-list .popover-title { background-color: #ffe0b2; }
+.bo-bookings-list .popover>.arrow:after { border-bottom-color: #ffe0b2; }
+.bo-bookings-list .bo-show-timing { display: inline-block; max-width: 70px; vertical-align: top; margin-right: 5px; }
+@media (min-width : 768px) {
+	.bo-bookings-list .panel-body { height: 170px; overflow-y: auto; }
+}
